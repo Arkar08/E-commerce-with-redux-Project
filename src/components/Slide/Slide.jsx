@@ -10,7 +10,7 @@ const Slide = () => {
   const slideIndex = useSelector((state) => state.slide.value);
   return (
     <>
-      <div className="relative pb-4 w-full">
+      <div className="relative pb-4 w-[100%]">
         {sliderData.map((item) => {
           return (
             <div
@@ -25,7 +25,7 @@ const Slide = () => {
                 <img
                   src={item.img}
                   alt="slide-Image"
-                  className="h-[600px] w-full"
+                  className="h-[600px] w-[100%]"
                 />
               )}
               <div>
@@ -37,7 +37,7 @@ const Slide = () => {
           );
         })}
       </div>
-      <div className="flex justify-between items-center w-full absolute top-[50%] px-12">
+      <div className="flex justify-between items-center w-full absolute top-[50%] md:px-4 lg:px-6 sm:px-2">
         <button
           onClick={() => dispatch(prevSlide(slideIndex - 1))}
           className="bg-white p-2 rounded-full text-center hover:bg-green-500"

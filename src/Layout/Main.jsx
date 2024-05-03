@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Filterbutton from "../components/Filter/Filterbutton";

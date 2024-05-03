@@ -13,12 +13,15 @@ const FrontCard = ({ store }) => {
       <h3 className="text-center text-wrap px-4 text-md">{store.text}</h3>
       <div className="flex justify-between items-center mt-2 px-4">
         <div className="flex">
-          <h2 className="text-xl">Size</h2>
+          <h2 className="text-xl">Size:</h2>
           <h3 className="px-2 text-xl text-red-600">{store.size[0]}</h3>
         </div>
-        <div className="flex">
-          <h2 className="text-xl">Color</h2>
-          <h3 className="px-2 text-xl">{store.color[0]}</h3>
+        <div className="flex items-center justify-center">
+          <h2 className="text-xl px-2">Color:</h2>
+          <div
+            className="w-[20px] h-[20px] rounded-full"
+            style={{ background: store.color[0] }}
+          ></div>
         </div>
       </div>
       <div className="flex items-center justify-center m-4">
