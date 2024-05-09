@@ -9,8 +9,10 @@ const initialState = {
 const cartProduct = createSlice({
   name: "cartProduct",
   initialState,
-  addProduct() {},
-  removeProduct() {},
+  reducers: {
+    addProduct() {},
+    removeProduct() {},
+  },
 });
 
 export const { addProduct, removeProduct } = cartProduct.actions;

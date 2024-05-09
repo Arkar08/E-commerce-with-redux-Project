@@ -1,9 +1,29 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { signup } from "../redux/feature/auth";
 
 const Signup = () => {
+  const dispatch = useDispatch();
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signup(values));
+  };
   return (
     <div className="bg-gray-300 w-full h-screen flex items-center justify-center mx-auto">
       <form className="w-[350px] border shadow-lg rounded-md shadow-black">
@@ -15,7 +35,10 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Name"
+            name="name"
+            value={values.name}
             className="p-2 rounded-md border-none outline-none"
+            onChange={handleChange}
           />
         </div>
         <div className="flex flex-col w-[90%] mx-auto">
@@ -23,7 +46,10 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Email"
+            name="email"
+            value={values.email}
             className="p-2 rounded-md border-none outline-none"
+            onChange={handleChange}
           />
         </div>
         <div className="flex flex-col w-[90%] mx-auto">
@@ -32,6 +58,9 @@ const Signup = () => {
             type="password"
             placeholder="Password"
             className="p-2 rounded-md border-none outline-none"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
           />
         </div>
         <div className="flex justify-center items-center m-2">
@@ -47,6 +76,7 @@ const Signup = () => {
             type="button"
             placeholder="Submit"
             className="p-2 bg-black rounded-md text-xl text-white cursor-pointer w-[50%]"
+            onClick={handleSubmit}
           >
             Sign up
           </button>

@@ -1,9 +1,28 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { login } from "../redux/feature/auth";
 
 const Login = () => {
+  const [users, setUsers] = useState({
+    email: "",
+    password: "",
+  });
+  const dispatch = useDispatch();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUsers({
+      ...users,
+      [name]: value,
+    });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(login(users));
+  };
   return (
     <div>
       <div className="bg-gray-300 w-full h-screen flex items-center justify-center mx-auto">
@@ -17,6 +36,9 @@ const Login = () => {
               type="text"
               placeholder="Email"
               className="p-2 rounded-md border-none outline-none"
+              name="email"
+              value={users.email}
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col w-[90%] mx-auto">
@@ -25,6 +47,9 @@ const Login = () => {
               type="password"
               placeholder="Password"
               className="p-2 rounded-md border-none outline-none"
+              name="password"
+              value={users.password}
+              onChange={handleChange}
             />
           </div>
           <div className="flex justify-between items-center m-2">
@@ -52,6 +77,7 @@ const Login = () => {
               type="button"
               placeholder="Submit"
               className="p-2 bg-black rounded-md text-xl text-white cursor-pointer w-[50%]"
+              onClick={handleLogin}
             >
               Login
             </button>
