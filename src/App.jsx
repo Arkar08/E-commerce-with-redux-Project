@@ -1,6 +1,5 @@
 import "./App.css";
 import FilterProducts from "./pages/FilterProducts";
-// eslint-disable-next-line no-unused-vars
 import Main from "./Layout/Main";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SingleProduct from "./components/SingleProduct/SingleProduct";

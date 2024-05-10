@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { addProduct } from "../../redux/feature/cartProduct";
 
 const SingleProduct = () => {
+  const dispatch = useDispatch();
   const oneProduct = useSelector((state) => state.product.products);
   return (
     <>
@@ -71,7 +73,10 @@ const SingleProduct = () => {
                     </select>
                   </div>
                   <div className="flex items-center justify-center m-4">
-                    <button className="p-2 border text-black shadow-md text-xl rounded-md outline-none hover:bg-red-600 hover:text-black">
+                    <button
+                      className="p-2 border text-black shadow-md text-xl rounded-md outline-none hover:bg-red-600 hover:text-black"
+                      onClick={() => dispatch(addProduct(product.id))}
+                    >
                       Add To Cart
                     </button>
                   </div>

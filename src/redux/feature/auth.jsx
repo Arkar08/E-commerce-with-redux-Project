@@ -15,7 +15,7 @@ const authSlice = createSlice({
     login(state, action) {
       const userAuth = action.payload;
       const getItem = JSON.stringify(userAuth);
-      const getUser = localStorage.getItem("auth", getItem);
+      const getUser = localStorage.setItem("auth", getItem);
       if (getUser) {
         state.authorUser = true;
         state.users = userAuth;

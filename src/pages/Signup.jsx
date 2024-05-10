@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../redux/feature/auth";
 
 const Signup = () => {
@@ -20,9 +20,11 @@ const Signup = () => {
       [name]: value,
     });
   };
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signup(values));
+    navigate("/");
   };
   return (
     <div className="bg-gray-300 w-full h-screen flex items-center justify-center mx-auto">

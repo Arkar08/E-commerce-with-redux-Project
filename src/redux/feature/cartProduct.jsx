@@ -10,7 +10,10 @@ const cartProduct = createSlice({
   name: "cartProduct",
   initialState,
   reducers: {
-    addProduct() {},
+    addProduct(state, action) {
+      const choiceproduct = action.payload;
+      console.log(choiceproduct);
+    },
     removeProduct() {},
   },
 });
