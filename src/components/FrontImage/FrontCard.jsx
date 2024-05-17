@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/feature/cartProduct";
 
 const FrontCard = ({ store }) => {
+  const dispatch = useDispatch();
   return (
     <div className="w-[350px] border rounded-md shadow-lg">
       <img
@@ -25,7 +28,23 @@ const FrontCard = ({ store }) => {
         </div>
       </div>
       <div className="flex items-center justify-center m-4">
-        <button className="p-2 bg-black text-white text-xl rounded-md border-none outline-none hover:bg-red-600 hover:text-black">
+        <button
+          className="p-2 bg-black text-white text-xl rounded-md border-none outline-none hover:bg-red-600 hover:text-black"
+          onClick={() =>
+            dispatch(
+              addProduct({
+                id: store.id,
+                qty: 1,
+                name: store.name,
+                color: store.color[0],
+                size: store.size[0],
+                price: store.price,
+                totalamount: store.price,
+                img: store.img,
+              })
+            )
+          }
+        >
           Add To Cart
         </button>
       </div>

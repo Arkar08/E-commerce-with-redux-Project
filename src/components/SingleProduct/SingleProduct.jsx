@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addProduct } from "../../redux/feature/cartProduct";
@@ -7,6 +7,12 @@ import { addProduct } from "../../redux/feature/cartProduct";
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const oneProduct = useSelector((state) => state.product.products);
+  const oneSize = oneProduct[0].size ? oneProduct[0].size[0] : "";
+  const oneColor = oneProduct[0].color ? oneProduct[0].color[0] : "";
+  const [size, setSize] = useState(oneSize);
+  const [color, setColor] = useState(oneColor);
+  const cartProduct = useSelector((state) => state.cart.product);
+  console.log(cartProduct);
   return (
     <>
       <div className="relative">
@@ -45,13 +51,11 @@ const SingleProduct = () => {
                     <select
                       id="size"
                       className="h-[40px] px-2 my-2 border rounded-md w-[90%]"
+                      value={size}
+                      onChange={(e) => setSize(e.target.value)}
                     >
                       {product.size.map((s, index) => {
-                        return (
-                          <option key={index} value={s}>
-                            {s}
-                          </option>
-                        );
+                        return <option key={index}>{s}</option>;
                       })}
                     </select>
                   </div>
@@ -62,20 +66,31 @@ const SingleProduct = () => {
                     <select
                       id="color"
                       className="h-[40px] px-2 my-2 border rounded-md w-[90%]"
+                      value={color}
+                      onChange={(e) => setColor(e.target.value)}
                     >
                       {product.color.map((c, index) => {
-                        return (
-                          <option key={index} value={c}>
-                            {c}
-                          </option>
-                        );
+                        return <option key={index}>{c}</option>;
                       })}
                     </select>
                   </div>
                   <div className="flex items-center justify-center m-4">
                     <button
                       className="p-2 border text-black shadow-md text-xl rounded-md outline-none hover:bg-red-600 hover:text-black"
-                      onClick={() => dispatch(addProduct(product.id))}
+                      onClick={() =>
+                        dispatch(
+                          addProduct({
+                            size,
+                            color,
+                            id: product.id,
+                            price: product.price,
+                            name: product.name,
+                            totalamount: product.price,
+                            qty: 1,
+                            img: product.img,
+                          })
+                        )
+                      }
                     >
                       Add To Cart
                     </button>

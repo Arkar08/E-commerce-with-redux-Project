@@ -4,7 +4,6 @@ import filterReducer from "../feature/FilterProducts";
 import productReducer from "../feature/Products";
 import authReducer from "../feature/auth";
 import cartProductReducer from "../feature/cartProduct";
-
 const store = configureStore({
   reducer: {
     slide: slideReducer,
