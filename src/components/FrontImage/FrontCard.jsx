@@ -39,7 +39,6 @@ const FrontCard = ({ store }) => {
                 color: store.color[0],
                 size: store.size[0],
                 price: store.price,
-                totalamount: store.price,
                 img: store.img,
               })
             )

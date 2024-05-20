@@ -6,6 +6,7 @@ import SingleProduct from "./components/SingleProduct/SingleProduct";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useSelector } from "react-redux";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   const userLogin = useSelector((state) => state.auth.authorUser);
@@ -13,10 +14,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={userLogin ? <Main /> : <Login />} />
+        <Route path="/" element={<Main />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/products/:type" element={<FilterProducts />} />
         <Route path="/products/:type/:id" element={<SingleProduct />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );

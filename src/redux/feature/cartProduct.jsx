@@ -22,7 +22,7 @@ const cartProduct = createSlice({
         if (choice) {
           choice.qty++;
           choice.totalamount += selectProduct.price;
-          state.totalamount++;
+          state.totalamount += selectProduct.price;
           state.price += selectProduct.price;
         } else {
           state.product.push({
@@ -31,13 +31,13 @@ const cartProduct = createSlice({
             color: selectProduct.color,
             qty: 1,
             price: selectProduct.price,
-            totalamount: selectProduct.price,
             name: selectProduct.name,
             img: selectProduct.img,
           });
-          state.totalamount++;
+          state.totalamount += selectProduct.price;
           state.price++;
         }
+        console.log(state.totalamount);
       } catch (error) {
         return error;
       }

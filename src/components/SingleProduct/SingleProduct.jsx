@@ -85,7 +85,6 @@ const SingleProduct = () => {
                             id: product.id,
                             price: product.price,
                             name: product.name,
-                            totalamount: product.price,
                             qty: 1,
                             img: product.img,
                           })
