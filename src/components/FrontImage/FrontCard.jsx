@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -40,6 +41,7 @@ const FrontCard = ({ store }) => {
                 size: store.size[0],
                 price: store.price,
                 img: store.img,
+                totalAmount: store.price,
               })
             )
           }

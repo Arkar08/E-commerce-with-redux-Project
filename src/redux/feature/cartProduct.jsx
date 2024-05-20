@@ -21,7 +21,7 @@ const cartProduct = createSlice({
         );
         if (choice) {
           choice.qty++;
-          choice.totalamount += selectProduct.price;
+          choice.totalAmount += selectProduct.price;
           state.totalamount += selectProduct.price;
           state.price += selectProduct.price;
         } else {
@@ -33,6 +33,7 @@ const cartProduct = createSlice({
             price: selectProduct.price,
             name: selectProduct.name,
             img: selectProduct.img,
+            totalAmount: selectProduct.price,
           });
           state.totalamount += selectProduct.price;
           state.price++;
@@ -42,7 +43,30 @@ const cartProduct = createSlice({
         return error;
       }
     },
-    removeProduct() {},
+    removeProduct(state, action) {
+      const removeItem = action.payload;
+      try {
+        const choice = state.product.find(
+          (product) =>
+            product.id === removeItem.id &&
+            product.size === removeItem.size &&
+            product.color === removeItem.color
+        );
+        if (choice.qty === 1) {
+          state.product = state.product.filter((product) => {
+            return product.id !== choice.id;
+          });
+          state.price--;
+          state.totalamount -= removeItem.price;
+        } else {
+          choice.totalAmount -= removeItem.price;
+          state.totalamount -= removeItem.price;
+          choice.qty--;
+        }
+      } catch (error) {
+        return error;
+      }
+    },
   },
 });
 
