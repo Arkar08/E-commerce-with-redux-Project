@@ -17,7 +17,7 @@ const productSlice = createSlice({
         console.log(single);
         state.products = single;
         const saveItem = JSON.stringify(single);
-        localStorage.setItem("Singleproducts", saveItem);
+        localStorage.setItem("singleproducts", saveItem);
       } catch (error) {
         return error;
       }

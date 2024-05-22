@@ -22,8 +22,59 @@ const filterSlice = createSlice({
         return error;
       }
     },
+    filterGender(state, action) {
+      const filterMale = action.payload;
+      try {
+        const filters = state.filter.filter((s) => {
+          return s.gender === filterMale;
+        });
+        state.filter = filters;
+        const saveItem = JSON.stringify(filters);
+        localStorage.setItem("filter", saveItem);
+      } catch (error) {
+        return error;
+      }
+    },
+    filterColor(state, action) {
+      try {
+        const colors = state.filter.filter((s) => {
+          return s.color.includes(action.payload);
+        });
+        state.filter = colors;
+        const saveItem = JSON.stringify(colors);
+        localStorage.setItem("filter", saveItem);
+      } catch (error) {
+        return error;
+      }
+    },
+    filterSize(state, action) {
+      try {
+        const sizes = state.filter.filter((s) => {
+          return s.size.includes(action.payload);
+        });
+        state.filter = sizes;
+        const saveItem = JSON.stringify(sizes);
+        localStorage.setItem("filter", saveItem);
+      } catch (error) {
+        return error;
+      }
+    },
+    clearFilter(state, action) {
+      try {
+        state.filter =
+          JSON.parse(localStorage.getItem("products")) || storeData;
+      } catch (error) {
+        return error;
+      }
+    },
   },
 });
 
-export const { filterProducts } = filterSlice.actions;
+export const {
+  filterProducts,
+  filterGender,
+  filterColor,
+  filterSize,
+  clearFilter,
+} = filterSlice.actions;
 export default filterSlice.reducer;

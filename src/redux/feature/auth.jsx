@@ -35,6 +35,9 @@ const authSlice = createSlice({
     logout(state) {
       state.authorUser = false;
       localStorage.removeItem("auth");
+      localStorage.removeItem("products");
+      localStorage.removeItem("singleproducts");
+      localStorage.removeItem("filter");
     },
   },
 });
